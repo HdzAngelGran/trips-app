@@ -24,9 +24,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.arkn.tripsapp.R
+import com.arkn.tripsapp.domian.models.LocationModel
+import com.arkn.tripsapp.domian.models.TripModel
 
 @Composable
-fun HomeTripCard(modifier: Modifier = Modifier) {
+fun HomeTripCard(modifier: Modifier = Modifier, trip: TripModel) {
     Card(onClick = {}, modifier, elevation = CardDefaults.cardElevation(6.dp)) {
         Box(Modifier, contentAlignment = Alignment.BottomStart) {
             Box(Modifier.fillMaxWidth().height(200.dp)) {
@@ -40,20 +42,20 @@ fun HomeTripCard(modifier: Modifier = Modifier) {
             Box(
                 Modifier
                     .fillMaxWidth()
-                    .padding(16.dp)
                     .background(
                         Brush.verticalGradient(listOf(Color.Transparent, Color(0x8A000000)))
                     )
+                    .padding(16.dp)
             ) {
                 Column {
                     Text(
-                        "Trip to Miami",
+                        trip.name,
                         style = TextStyle(Color.White),
                         fontSize = 18.sp,
                         fontWeight = FontWeight.W400
                     )
                     Text(
-                        "Florida",
+                        trip.destination,
                         style = TextStyle(Color.White),
                         fontSize = 14.sp,
                         fontWeight = FontWeight.W300,
@@ -67,5 +69,19 @@ fun HomeTripCard(modifier: Modifier = Modifier) {
 @Preview
 @Composable
 private fun HomeTripCardPreview() {
-    HomeTripCard()
+    HomeTripCard(
+        trip = TripModel(
+            1,
+            "CDMX",
+            "México",
+            LocationModel(
+                latitude = 0.0,
+                longitude = 0.0,
+            ),
+            "",
+            "",
+            "",
+            ""
+        )
+    )
 }
